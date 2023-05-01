@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,12 +44,18 @@ public class ExpenseController {
         return new ResponseEntity<>(expenseService.save(expense), HttpStatus.OK);
     }
 
-    @PutMapping("expense/{id}")
-    public ResponseEntity<String> updateExpense(@PathVariable UUID id,
+    @PutMapping("/expense/{id}")
+    public ResponseEntity<Expense> updateExpense(@PathVariable UUID id,
                                                 @RequestBody Expense expense) {
         Optional<Expense> expenseToBeUpdated = expenseService.findById(id);
         if (expenseToBeUpdated.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        return new ResponseEntity<>(expenseService.update(id, expense), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/expense/{id}")
+    public void deleteExpense(@PathVariable UUID id) {
+        expenseService.delete(id);
     }
 }

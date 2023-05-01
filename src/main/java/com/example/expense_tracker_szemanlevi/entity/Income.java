@@ -9,13 +9,14 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.UUID;
 
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 //@Table(name = "incomes")
-public class Income {
+public class Income extends Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
@@ -23,16 +24,16 @@ public class Income {
 
     private String description;
 
-    private double amount;
+    private Double amount;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private ExpenseCategory category;
+    @JoinColumn(name = "income_category_id")
+    private IncomeCategory category;
 
-    public Income(String description, double amount, Date date, ExpenseCategory category) {
+    public Income(String description, double amount, Date date, IncomeCategory category) {
         this.description = description;
         this.amount = amount;
         this.date = date;
@@ -45,4 +46,5 @@ public class Income {
         this.date = date;
         this.category = null;
     }
+
 }

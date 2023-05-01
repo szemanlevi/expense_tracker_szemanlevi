@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Table;
-import org.springframework.data.jpa.repository.Temporal;
 
 import java.util.Date;
 import java.util.UUID;
@@ -33,9 +31,9 @@ public class Expense {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private ExpenseCategory category;
 
-        public Expense(String description, double amount, Date date, Category category) {
+        public Expense(String description, double amount, Date date, ExpenseCategory category) {
                 this.description = description;
                 this.amount = amount;
                 this.date = date;

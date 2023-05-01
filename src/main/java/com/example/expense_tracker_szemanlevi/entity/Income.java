@@ -30,9 +30,9 @@ public class Income {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private ExpenseCategory category;
 
-    public Income(String description, double amount, Date date, Category category) {
+    public Income(String description, double amount, Date date, ExpenseCategory category) {
         this.description = description;
         this.amount = amount;
         this.date = date;

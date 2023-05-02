@@ -2,6 +2,7 @@ package com.example.expense_tracker_szemanlevi.controller;
 
 import com.example.expense_tracker_szemanlevi.entity.Expense;
 import com.example.expense_tracker_szemanlevi.service.ExpenseService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,7 @@ public class ExpenseController {
     }
 
     @PostMapping("/expense")
-    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense,
+    public ResponseEntity<Expense> addExpense(@Valid @RequestBody Expense expense,
                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -45,7 +46,7 @@ public class ExpenseController {
 
     @PutMapping("/expense/{id}")
     public ResponseEntity<Expense> updateExpense(@PathVariable Long id,
-                                                 @RequestBody Expense expense) {
+                                                 @Valid @RequestBody Expense expense) {
         Optional<Expense> expenseToBeUpdated = expenseService.findById(id);
         if (expenseToBeUpdated.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

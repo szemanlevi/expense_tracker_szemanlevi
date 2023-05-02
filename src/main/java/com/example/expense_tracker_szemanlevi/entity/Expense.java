@@ -1,6 +1,7 @@
 package com.example.expense_tracker_szemanlevi.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,9 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @NotBlank
     private String description;
+    @NotBlank
     private Double amount;
     //    @Temporal(TemporalType.TIMESTAMP)
     private Date date;

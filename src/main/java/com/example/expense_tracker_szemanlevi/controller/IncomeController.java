@@ -2,6 +2,7 @@ package com.example.expense_tracker_szemanlevi.controller;
 
 import com.example.expense_tracker_szemanlevi.entity.Income;
 import com.example.expense_tracker_szemanlevi.service.IncomeService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -40,7 +41,7 @@ public class IncomeController {
     }
 
     @PostMapping("/income")
-    public ResponseEntity<Income> addIncome(@RequestBody Income income,
+    public ResponseEntity<Income> addIncome(@Valid @RequestBody Income income,
                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -50,7 +51,7 @@ public class IncomeController {
 
     @PutMapping("/income/{id}")
     public ResponseEntity<Income> updateIncome(@PathVariable Long id,
-                                               @RequestBody Income income) {
+                                               @Valid @RequestBody Income income) {
         Optional<Income> incomeToBeUpdated = incomeService.findById(id);
         if (incomeToBeUpdated.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

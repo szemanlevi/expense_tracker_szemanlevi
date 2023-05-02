@@ -3,6 +3,7 @@ package com.example.expense_tracker_szemanlevi.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class IncomeCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    @NotBlank
     private String name;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "incomeCategory")
     @JsonBackReference

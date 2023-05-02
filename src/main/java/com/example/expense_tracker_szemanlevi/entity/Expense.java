@@ -2,6 +2,7 @@ package com.example.expense_tracker_szemanlevi.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class Expense {
     private Long id;
     @NotBlank
     private String description;
-    @NotBlank
+    @NotNull
     private Double amount;
     //    @Temporal(TemporalType.TIMESTAMP)
     private Date date;

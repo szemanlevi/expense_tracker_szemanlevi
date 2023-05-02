@@ -1,5 +1,7 @@
 package com.example.expense_tracker_szemanlevi.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,17 +15,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "income_category")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class IncomeCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-
     private String name;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn()
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "incomeCategory")
+    @JsonBackReference
     private List<Income> incomes;
 
     public IncomeCategory(String name) {

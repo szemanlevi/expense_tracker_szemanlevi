@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 public class ExpenseController {
@@ -27,7 +26,7 @@ public class ExpenseController {
     }
 
     @GetMapping("/expense/{id}")
-    public ResponseEntity<Expense> getExpenseById(@PathVariable UUID id) {
+    public ResponseEntity<Expense> getExpenseById(@PathVariable Long id) {
         Optional<Expense> expense = expenseService.findById(id);
         if (expense.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -45,8 +44,8 @@ public class ExpenseController {
     }
 
     @PutMapping("/expense/{id}")
-    public ResponseEntity<Expense> updateExpense(@PathVariable UUID id,
-                                                @RequestBody Expense expense) {
+    public ResponseEntity<Expense> updateExpense(@PathVariable Long id,
+                                                 @RequestBody Expense expense) {
         Optional<Expense> expenseToBeUpdated = expenseService.findById(id);
         if (expenseToBeUpdated.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -55,7 +54,7 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/expense/{id}")
-    public void deleteExpense(@PathVariable UUID id) {
+    public void deleteExpense(@PathVariable Long id) {
         expenseService.delete(id);
     }
 }

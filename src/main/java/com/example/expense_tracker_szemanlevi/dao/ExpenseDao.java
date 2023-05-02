@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface ExpenseDao extends JpaRepository<Expense, UUID> {
+public interface ExpenseDao extends JpaRepository<Expense, Long> {
 
 }

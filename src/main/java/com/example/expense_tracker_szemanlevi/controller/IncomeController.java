@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 public class IncomeController {
@@ -20,7 +19,7 @@ public class IncomeController {
         this.incomeService = incomeService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/balance")
     public Double getBalance() {
         return incomeService.getBalance();
     }
@@ -32,7 +31,7 @@ public class IncomeController {
     }
 
     @GetMapping("/income/{id}")
-    public ResponseEntity<Income> getIncomeById(@PathVariable UUID id) {
+    public ResponseEntity<Income> getIncomeById(@PathVariable Long id) {
         Optional<Income> income = incomeService.findById(id);
         if (income.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,7 +41,7 @@ public class IncomeController {
 
     @PostMapping("/income")
     public ResponseEntity<Income> addIncome(@RequestBody Income income,
-                                              BindingResult bindingResult) {
+                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -50,8 +49,8 @@ public class IncomeController {
     }
 
     @PutMapping("/income/{id}")
-    public ResponseEntity<Income> updateIncome(@PathVariable UUID id,
-                                                 @RequestBody Income income) {
+    public ResponseEntity<Income> updateIncome(@PathVariable Long id,
+                                               @RequestBody Income income) {
         Optional<Income> incomeToBeUpdated = incomeService.findById(id);
         if (incomeToBeUpdated.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -60,7 +59,7 @@ public class IncomeController {
     }
 
     @DeleteMapping("/income/{id}")
-    public void deleteIncome(@PathVariable UUID id) {
+    public void deleteIncome(@PathVariable Long id) {
         incomeService.delete(id);
     }
 }

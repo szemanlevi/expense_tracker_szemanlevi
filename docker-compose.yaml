@@ -1,0 +1,20 @@
+services:
+  expensedb:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: expensedb
+      POSTGRES_USER: expenseuser
+      POSTGRES_PASSWORD: expensepassword
+    ports:
+      - "5442:5432"
+    restart: on-failure
+  expenseapp:
+    build:
+      context: .
+    depends_on:
+      - expensedb
+    environment:
+      DB_URL: expensedb
+      DB_PORT: 5432
+    ports:
+      - "8080:8080"

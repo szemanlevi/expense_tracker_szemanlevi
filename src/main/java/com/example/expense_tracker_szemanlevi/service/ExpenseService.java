@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 @Service
 public class ExpenseService {
@@ -26,7 +26,7 @@ public class ExpenseService {
     }
 
 
-    public Optional<Expense> findById(UUID id) {
+    public Optional<Expense> findById(Long id) {
         return expenseDao.findById(id);
     }
 
@@ -34,17 +34,17 @@ public class ExpenseService {
         return expenseDao.save(expense);
     }
 
-    public Expense update(UUID id, Expense expense) {
+    public Expense update(Long id, Expense expense) {
         Expense expenseToUpdate = expenseDao.findById(id).orElseThrow(() -> new EntityNotFoundException("Expense not found"));
         expenseToUpdate.setDescription(expense.getDescription());
         expenseToUpdate.setAmount(expense.getAmount());
         expenseToUpdate.setDate(expense.getDate());
-        expenseToUpdate.setCategory(expense.getCategory());
+        expenseToUpdate.setExpenseCategory(expense.getExpenseCategory());
         return expenseDao.save(expenseToUpdate);
     }
 
 
-    public void delete(UUID id) {
+    public void delete(Long id) {
         expenseDao.deleteById(id);
     }
 

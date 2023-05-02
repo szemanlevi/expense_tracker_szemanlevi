@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface IncomeDao extends JpaRepository<Income, UUID> {
+public interface IncomeDao extends JpaRepository<Income, Long> {
 
 }

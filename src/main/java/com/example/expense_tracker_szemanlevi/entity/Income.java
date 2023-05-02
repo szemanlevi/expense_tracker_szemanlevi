@@ -15,8 +15,8 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Table(name = "incomes")
-public class Income extends Transaction {
+@Table(name = "income")
+public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)

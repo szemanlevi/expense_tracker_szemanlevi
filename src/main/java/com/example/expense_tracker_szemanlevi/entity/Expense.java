@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Table(name = "expenses")
+@Table(name = "expense")
 public class Expense {
 
     @Id
@@ -46,6 +46,4 @@ public class Expense {
         this.date = date;
         this.category = null;
     }
-
-
 }

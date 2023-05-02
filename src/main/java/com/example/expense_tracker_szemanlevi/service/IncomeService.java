@@ -1,7 +1,10 @@
 package com.example.expense_tracker_szemanlevi.service;
 
-import com.example.expense_tracker_szemanlevi.dao.CategoryDao;
+import com.example.expense_tracker_szemanlevi.dao.ExpenseCategoryDao;
+import com.example.expense_tracker_szemanlevi.dao.ExpenseDao;
+import com.example.expense_tracker_szemanlevi.dao.IncomeCategoryDao;
 import com.example.expense_tracker_szemanlevi.dao.IncomeDao;
+import com.example.expense_tracker_szemanlevi.entity.Expense;
 import com.example.expense_tracker_szemanlevi.entity.Income;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,10 @@ public class IncomeService {
     private IncomeDao incomeDao;
 
     @Autowired
-    private CategoryDao categoryDao;
+    private ExpenseDao expenseDao;
+
+    @Autowired
+    private IncomeCategoryDao categoryDao;
 
 
     public List<Income> findAll() {
@@ -48,8 +54,10 @@ public class IncomeService {
         incomeDao.deleteById(id);
     }
 
-    public Double getSum() {
-
+    public Double getBalance() {
+        double allIncomes = incomeDao.findAll().stream().mapToDouble(Income::getAmount).sum();
+        double allExpenses = expenseDao.findAll().stream().mapToDouble(Expense::getAmount).sum();
+        return allIncomes - allExpenses;
     }
 
 //    public IncomeDto createIncome(IncomeDto incomeDto) {

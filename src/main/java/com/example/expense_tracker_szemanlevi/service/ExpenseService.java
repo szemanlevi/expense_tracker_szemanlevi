@@ -1,6 +1,6 @@
 package com.example.expense_tracker_szemanlevi.service;
 
-import com.example.expense_tracker_szemanlevi.dao.CategoryDao;
+import com.example.expense_tracker_szemanlevi.dao.ExpenseCategoryDao;
 import com.example.expense_tracker_szemanlevi.dao.ExpenseDao;
 import com.example.expense_tracker_szemanlevi.entity.Expense;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,7 +18,7 @@ public class ExpenseService {
     private ExpenseDao expenseDao;
 
     @Autowired
-    private CategoryDao categoryDao;
+    private ExpenseCategoryDao categoryDao;
 
 
     public List<Expense> findAll() {

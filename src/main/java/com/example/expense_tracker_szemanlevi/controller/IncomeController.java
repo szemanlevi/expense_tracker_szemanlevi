@@ -1,7 +1,6 @@
 package com.example.expense_tracker_szemanlevi.controller;
 
 import com.example.expense_tracker_szemanlevi.entity.Income;
-import com.example.expense_tracker_szemanlevi.service.ExpenseService;
 import com.example.expense_tracker_szemanlevi.service.IncomeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +21,8 @@ public class IncomeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Double> getSum() {
-        incomeService.getSum();
+    public Double getBalance() {
+        return incomeService.getBalance();
     }
 
     @GetMapping("/income")

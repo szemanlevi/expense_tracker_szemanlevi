@@ -1,7 +1,6 @@
 package com.example.expense_tracker_szemanlevi.service;
 
 import com.example.expense_tracker_szemanlevi.dao.ExpenseCategoryDao;
-import com.example.expense_tracker_szemanlevi.entity.Expense;
 import com.example.expense_tracker_szemanlevi.entity.ExpenseCategory;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;

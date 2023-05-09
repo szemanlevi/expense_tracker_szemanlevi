@@ -26,7 +26,6 @@ public class Expense {
     private String description;
     @NotNull
     private Double amount;
-    //    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expense_category_id")

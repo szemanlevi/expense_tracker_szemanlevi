@@ -36,7 +36,7 @@ public class IncomeCategoryController {
 
     @PostMapping("/income/category/")
     public ResponseEntity<IncomeCategory> addIncomeCategory(@Valid @RequestBody IncomeCategory incomeCategory,
-                                                              BindingResult bindingResult) {
+                                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -45,7 +45,7 @@ public class IncomeCategoryController {
 
     @PutMapping("/income/category/{id}")
     public ResponseEntity<IncomeCategory> updateIncomeCategory(@PathVariable Long id,
-                                                                 @Valid @RequestBody IncomeCategory incomeCategory) {
+                                                               @Valid @RequestBody IncomeCategory incomeCategory) {
         Optional<IncomeCategory> incomeCategoryToBeUpdated = incomeCategoryService.findById(id);
         if (incomeCategoryToBeUpdated.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

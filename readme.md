@@ -1,3 +1,16 @@
+# Megjegyzés: 
+Megírtam a PostgreSQL és Docker részét, működik minden.
+Majd visszaalakítottam a H2-es megoldásra, hogy a tesztek gond nélkül fussanak és local gépen lehessen futtatni a Postman-es teszteléshez.
+PostgreSQL és Docker teszthez az application.properties-ben található kikommentelt sorokat kell visszahozni.
+#
+#
+#
+#
+
+
+
+Innentől lefelé a feladat követelményei találhatóak!
+
 # Vizsgaremek
 
 A feladatod egy backend API projekt készítése.

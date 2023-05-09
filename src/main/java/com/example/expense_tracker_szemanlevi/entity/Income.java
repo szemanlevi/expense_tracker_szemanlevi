@@ -25,17 +25,18 @@ public class Income {
     private String description;
     @NotNull
     private Double amount;
-//    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "income_category_id")
     private IncomeCategory incomeCategory;
+
     public Income(String description, double amount, Date date, IncomeCategory incomeCategory) {
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.incomeCategory = incomeCategory;
     }
+
     public Income(String description, double amount, Date date) {
         this.description = description;
         this.amount = amount;

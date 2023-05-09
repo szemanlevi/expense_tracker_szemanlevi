@@ -1,6 +1,5 @@
 package com.example.expense_tracker_szemanlevi.service;
 
-import com.example.expense_tracker_szemanlevi.dao.ExpenseCategoryDao;
 import com.example.expense_tracker_szemanlevi.dao.ExpenseDao;
 import com.example.expense_tracker_szemanlevi.dao.IncomeCategoryDao;
 import com.example.expense_tracker_szemanlevi.dao.IncomeDao;

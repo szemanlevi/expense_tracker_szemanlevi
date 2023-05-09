@@ -2,6 +2,8 @@ package com.example.expense_tracker_szemanlevi.controller;
 
 import com.example.expense_tracker_szemanlevi.entity.IncomeCategory;
 import com.example.expense_tracker_szemanlevi.service.IncomeCategoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +22,16 @@ public class IncomeCategoryController {
     }
 
     @GetMapping("/income/category")
+    @Operation(summary = "Income Category GetMapping", description = "get all income categories")
     public ResponseEntity<List<IncomeCategory>> getAllIncomeCategories() {
         List<IncomeCategory> incomeCategories = incomeCategoryService.findAll();
         return new ResponseEntity<>(incomeCategories, HttpStatus.OK);
     }
 
     @GetMapping("/income/category/{id}")
-    public ResponseEntity<IncomeCategory> getIncomeCategoryById(@PathVariable Long id) {
+    @Operation(summary = "Income Category GetMapping", description = "get income category by id")
+    public ResponseEntity<IncomeCategory> getIncomeCategoryById(@Parameter(description = "income category id", required = true)
+                                                                @PathVariable Long id) {
         Optional<IncomeCategory> incomeCategory = incomeCategoryService.findById(id);
         if (incomeCategory.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -35,6 +40,7 @@ public class IncomeCategoryController {
     }
 
     @PostMapping("/income/category/")
+    @Operation(summary = "Income Category PostMapping", description = "post an income category")
     public ResponseEntity<IncomeCategory> addIncomeCategory(@Valid @RequestBody IncomeCategory incomeCategory,
                                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -44,7 +50,9 @@ public class IncomeCategoryController {
     }
 
     @PutMapping("/income/category/{id}")
-    public ResponseEntity<IncomeCategory> updateIncomeCategory(@PathVariable Long id,
+    @Operation(summary = "Income Category PutMapping", description = "update an income category by id")
+    public ResponseEntity<IncomeCategory> updateIncomeCategory(@Parameter(description = "income category id", required = true)
+                                                               @PathVariable Long id,
                                                                @Valid @RequestBody IncomeCategory incomeCategory) {
         Optional<IncomeCategory> incomeCategoryToBeUpdated = incomeCategoryService.findById(id);
         if (incomeCategoryToBeUpdated.isEmpty()) {
@@ -54,7 +62,9 @@ public class IncomeCategoryController {
     }
 
     @DeleteMapping("/income/category/{id}")
-    public void deleteIncomeCategory(@PathVariable Long id) {
+    @Operation(summary = "Income Category DeleteMapping", description = "delete an income category by id")
+    public void deleteIncomeCategory(@Parameter(description = "income category id", required = true)
+                                     @PathVariable Long id) {
         incomeCategoryService.delete(id);
     }
 }
